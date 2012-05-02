@@ -63,7 +63,7 @@ module Dynamoid
       # 
       # @since 0.2.0
       def create_table(table_name, key = :id, options = {})
-        options[:hash_key] ||= {key.to_sym => :string}
+        options[:hash_key] || {key.to_sym => :string}
         read_capacity = options[:read_capacity] || Dynamoid::Config.read_capacity
         write_capacity = options[:write_capacity] || Dynamoid::Config.write_capacity
         table = @@connection.tables.create(table_name, read_capacity, write_capacity, options)
